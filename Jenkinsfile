@@ -7,6 +7,11 @@ pipeline {
                 echo 'Hello '
             }
         }
+        stage('Print Message 2') {
+            steps {
+                echo 'Hello World'
+            }
+        }
     }
 }
 
