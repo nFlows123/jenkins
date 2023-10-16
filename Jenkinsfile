@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Print Message') {
             steps {
-                echo 'Hello, World! '
+                echo 'Hello '
             }
         }
     }
