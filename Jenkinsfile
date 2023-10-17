@@ -13,7 +13,7 @@ pipeline {
         stage('Run PowerShell Script') {
             steps {
                 // This step runs the PowerShell script
-                bat 'powershell.exe -File ps1_file.ps'
+                sh 'sh1_file.sh'
             }
         }
     }
