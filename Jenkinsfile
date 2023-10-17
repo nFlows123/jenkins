@@ -1,17 +1,26 @@
 pipeline {
     agent any
-    
+
     stages {
-        stage('Print Message') {
+        stage('Checkout') {
             steps {
-                echo 'Hello '
+                // This step checks out the code from the repository
+                script {
+                    checkout scm
+                }
             }
         }
-        stage('Print Message 2') {
+        stage('Run PowerShell Script') {
             steps {
-                echo 'Hello World'
+                // This step runs the PowerShell script
+                bat 'powershell.exe -File path/to/your/script.ps1'
             }
         }
     }
-}
 
+    post {
+        always {
+            // Clean up or post-execution steps, if any
+        }
+    }
+}
