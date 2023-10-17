@@ -10,10 +10,10 @@ pipeline {
                 }
             }
         }
-        stage('Run PowerShell Script') {
+        stage('Run Shell Script') {
             steps {
-                // This step runs the PowerShell script
-                sh 'sh1_file.sh'
+                // This step runs the Bash script
+                sh './sh1_file.sh'
             }
         }
     }
