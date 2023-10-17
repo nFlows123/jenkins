@@ -17,10 +17,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            // Clean up or post-execution steps, if any
-        }
-    }
 }
