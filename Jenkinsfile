@@ -10,10 +10,15 @@ pipeline {
                 }
             }
         }
-        stage('Run Shell Script') {
+        stage('Prepare and Run Shell Script') {
             steps {
-                // This step runs the Bash script
-                sh './sh1_file.sh'
+                script {
+                    // Grant execute permission to the script
+                    sh 'chmod +x sh1_file.sh'
+                    
+                    // Run the Bash script
+                    sh './sh1_file.sh'
+                }
             }
         }
     }
