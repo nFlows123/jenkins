@@ -4,22 +4,18 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // This step checks out the code from the repository
-                script {
-                    checkout scm
-                }
+                checkout scm
             }
         }
-        stage('Prepare and Run Shell Script') {
+
+        stage('Build and Push Docker Image') {
             steps {
                 script {
-                    // Grant execute permission to the script
-                    sh 'chmod +x sh1_file.sh'
-                    
-                    // Run the Bash script
-                    sh './sh1_file.sh'
+                    // Build the Docker image
+                    def customImage = docker.build("stradegi001/nflowsr2:neo4j4.4.7test")
 
-                    sh 'docker build --no-cache -t stradegi001/nflowsr2:neo4j4.4.7test -f Neo4jDockerFile .'
+                    // Push the image to Docker Hub
+                    customImage.push()
                 }
             }
         }
