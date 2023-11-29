@@ -6,6 +6,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        sh 'systemctl start docker'
         sh 'docker build -t jenkins-test .'
         echo 'image created successfully'
       }
