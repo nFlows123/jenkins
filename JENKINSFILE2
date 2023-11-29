@@ -1,11 +1,19 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
+  agent any
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+  }
+  stages {
+    stage('Build') {
+      steps {
+        sh 'sudo docker build -t jenkins-test .'
+        echo 'image created successfully'
+      }
     }
+    stage('PrintOutput') {
+      steps {
+        sh 'PrintOutput runned suucssfully'
+      }
+    }
+  }
 }
