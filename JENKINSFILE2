@@ -13,9 +13,8 @@ pipeline {
   post {
     always {
       script {
-        // Change ownership and permissions of the Docker socket
-        sh 'sudo chown jenkins:docker /var/run/docker.sock'
-        sh 'sudo chmod 660 /var/run/docker.sock'
+        // Add Jenkins user to the Docker group
+        sh 'sudo usermod -aG docker jenkins'
       }
     }
   }
