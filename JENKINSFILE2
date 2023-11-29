@@ -7,12 +7,12 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          // Start Docker daemon if not already running (assuming Jenkins agent has permission)
-          sh 'docker info || service docker start'
+          // Start Docker daemon if not already running
+          sh 'docker info || (sudo systemctl start docker || true)'
 
           // Build Docker image
           sh 'docker build -t jenkins-test .'
-          
+
           // Print a message indicating success
           echo 'Image created successfully'
         }
