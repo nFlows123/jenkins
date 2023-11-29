@@ -6,14 +6,16 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'systemctl start docker'
-        sh 'docker build -t jenkins-test .'
-        echo 'image created successfully'
+        script {
+          sh 'sudo systemctl start docker' // Start Docker daemon with sudo
+          sh 'docker build -t jenkins-test .'
+          echo 'Image created successfully'
+        }
       }
     }
     stage('PrintOutput') {
       steps {
-        sh 'PrintOutput runned suucssfully'
+        sh 'echo "PrintOutput runned successfully"'
       }
     }
   }
