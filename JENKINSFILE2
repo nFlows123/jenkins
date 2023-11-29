@@ -7,9 +7,6 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          // Start Docker daemon if not already running
-          sh 'docker info || (sudo systemctl start docker || true)'
-
           // Build Docker image
           sh 'docker build -t jenkins-test .'
 
