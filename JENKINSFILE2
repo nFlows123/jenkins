@@ -1,13 +1,13 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    docker.build("your-docker-image-name:latest")
-                }
-            }
-        }
+  agent any
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+  }
+  stages {
+    stage('Build') {
+      steps {
+        sh 'docker build -t jenkins-test1/jenkins-test1 .'
+      }
     }
+  }
 }
