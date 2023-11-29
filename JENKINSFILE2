@@ -7,15 +7,20 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          sh 'sudo systemctl start docker' // Start Docker daemon with sudo
+          // Start Docker daemon if not already running (assuming Jenkins agent has permission)
+          sh 'docker info || service docker start'
+
+          // Build Docker image
           sh 'docker build -t jenkins-test .'
+          
+          // Print a message indicating success
           echo 'Image created successfully'
         }
       }
     }
     stage('PrintOutput') {
       steps {
-        sh 'echo "PrintOutput runned successfully"'
+        sh 'echo "PrintOutput run successfully"'
       }
     }
   }
