@@ -10,12 +10,4 @@ pipeline {
       }
     }
   }
-  post {
-    always {
-      script {
-        // Add Jenkins user to the Docker group
-        sh 'sudo usermod -aG docker jenkins'
-      }
-    }
-  }
 }
