@@ -5,7 +5,7 @@ pipeline {
   }
   environment {
     // Define environment variables if needed
-    DOCKER_IMAGE_NAME = 'jenkins-test1/jenkins-test1'
+    DOCKER_IMAGE_NAME = 'jenkins-test1/jenkins-test2'
   }
   stages {
     stage('Build') {
