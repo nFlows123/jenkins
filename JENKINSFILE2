@@ -3,10 +3,23 @@ pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
+  environment {
+    // Define environment variables if needed
+    DOCKER_IMAGE_NAME = 'jenkins-test1/jenkins-test1'
+  }
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t jenkins-test1/jenkins-test1 .'
+        script {
+          // Use a dedicated Dockerfile location if it's not in the root of the project
+          def dockerfilePath = '.' 
+
+          // Build the Docker image
+          sh "docker build -t ${DOCKER_IMAGE_NAME} ${dockerfilePath}"
+
+          // Optionally, push the image to a Docker registry
+          // sh "docker push ${DOCKER_IMAGE_NAME}"
+        }
       }
     }
   }
